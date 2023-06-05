@@ -1,0 +1,828 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOMoktcqdh1ddsNwQep7PFa",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pkumar2262/GreyAtom/blob/master/NTPEL%20Python\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "vQJ0afX6foRg"
+      },
+      "outputs": [],
+      "source": [
+        "# check for common factor for both m and n.\n",
+        "def gcd(m,n):\n",
+        "  fm=[]\n",
+        "  for i in range(1,m+1):\n",
+        "    if(m%i==0):\n",
+        "      fm.append(i)\n",
+        "  fn=[]\n",
+        "  for j in range(1,n+1):\n",
+        "    if(n%j==0):\n",
+        "      fn.append(j)\n",
+        "  cf=[]\n",
+        "  for f in fm:\n",
+        "    if f in fn:\n",
+        "      cf.append(f)\n",
+        "  return(cf[-1])\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd(14,63)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fZ9m1FZYiTFi",
+        "outputId": "e9b26884-c03c-470a-ceed-c09e1f46df22"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# check for common factor in m and n at the same time\n",
+        "def gcd1(m,n):\n",
+        "  cf=[]\n",
+        "  for i in range(1,min(m,n)+1):\n",
+        "    if (m%i)==0 and (n%i)==0:\n",
+        "      cf.append(i)\n",
+        "  return(cf[-1])\n"
+      ],
+      "metadata": {
+        "id": "L4B8XtEPiUNL"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd1(14,63)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xOhSfXACiUZk",
+        "outputId": "a316f5a1-1ef7-4b02-df22-4bc9f8dec49c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "dTZhJcXF2lih"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# instad of appending common factors in a list, we can store common factor in a variable, 1 will be the min common factor and hence mrcf will be atleast set as 1\n",
+        "def gcd2(m,n):\n",
+        "  cf=[]\n",
+        "  for i in range(1,min(m,n)+1):\n",
+        "    if (m%i)==0 and (n%i)==0:\n",
+        "      mrcf=i\n",
+        "  return(mrcf)"
+      ],
+      "metadata": {
+        "id": "cVwKFCxoiUlz"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd2(14,63)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "96DODtKfiUwi",
+        "outputId": "93be9cc5-c2d8-4816-8570-6145a8143c65"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 7
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## instead of scanning forwrad we can scan backward and the first item that satisfy this becomes the GCD, by decrementing the variable i we ensure that While loop comes to an end\n",
+        "def gcd3(m,n):\n",
+        "  i=min(m,n)\n",
+        "  while i>0:\n",
+        "    if(m%i)==0 and (n%i)==0:\n",
+        "      return(i)\n",
+        "    else:\n",
+        "      i=i-1"
+      ],
+      "metadata": {
+        "id": "70iNRK9RiU4D"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd3(14,63)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YGKMJLKWm17B",
+        "outputId": "19efe5ea-2d16-45db-cbe0-899312eff347"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 9
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## Euclind's algorith, if n=ad and m=bd then n-m=d(a-b), which means that the difference d divides n-m\n",
+        "def gcd4(m,n):\n",
+        "  # assume m>=n\n",
+        "  if m<n:\n",
+        "    (m,n)=(n,m)\n",
+        "\n",
+        "  if(m%n)==0:\n",
+        "    return(n)\n",
+        "  else:\n",
+        "    diff=m-n\n",
+        "    # diff>n? Possible!\n",
+        "    return(gcd4(max(n,diff),min(n,diff)))\n",
+        "# last line takes care of soritng of the numbers in gcd pairs, assuming we need to provide higher number as the first argument and lower as the second argument"
+      ],
+      "metadata": {
+        "id": "Qzg-l5Hbm3uH"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd4(14,63)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YpGQzA21o2Im",
+        "outputId": "d8aff228-0bcd-4d93-8bdd-872ecd982256"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## Euclind's algorith, if n=ad and m=bd then n-m=d(a-b), which means that the difference d divides n-m, difference of this and above is the difference in loop, first is with If second is with While.\n",
+        "def gcd5(m,n):\n",
+        "  if m<n:\n",
+        "    (m,n)=(n,m)\n",
+        "  \n",
+        "  while (m%n)!=0:\n",
+        "    diff=m-n\n",
+        "    (m,n)=(max(n,diff),min(n,diff))\n",
+        "\n",
+        "  return(n)"
+      ],
+      "metadata": {
+        "id": "-tuRHmDco4RG"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd5(63,14)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xI0BwMqEqigW",
+        "outputId": "4fe72957-dbbd-4c8f-8c3d-cfeb41d41086"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 7
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Euclind remiander m = ad, n=bd - assuming d is common divosr of m and n. Lets write the bigger number in terms of smaller, lets assume m=qn+r, replacing m and n with values\n",
+        "# ad = q(bd)+r ; since d divides left side its safe to assuem that d divides the right side as well.\n",
+        "def gcd6(m,n):\n",
+        "  # assume m>=n\n",
+        "  if m<n:\n",
+        "    (m,n)=(n,m)\n",
+        "\n",
+        "  if(m%n)==0:\n",
+        "    return(n)\n",
+        "  else:\n",
+        "    r=m%n\n",
+        "    # remainder will always be less than number n\n",
+        "    return(gcd6(n,r))\n"
+      ],
+      "metadata": {
+        "id": "mzjXqOd8qkhw"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd6(101,2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ruK4Rh1GeigW",
+        "outputId": "6f1606c1-f561-4b24-8231-4963fcbe268d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "1"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 9
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Euclind remiander m = ad, n=bd - assuming d is common divosr of m and n. Lets write the bigger number in terms of smaller, lets assume m=qn+r, replacing m and n with values\n",
+        "# ad = q(bd)+r ; since d divides left side its safe to assuem that d divides the right side as well.\n",
+        "def gcd7(m,n):\n",
+        "  # assume m>=n\n",
+        "  if m<n:\n",
+        "    (m,n)=(n,m)\n",
+        "\n",
+        "  while(m%n)!=0:\n",
+        "    (m,n)=(n,m%n) # m%n <n, always!\n",
+        "  return(n)\n",
+        "# another solution but instead of a while loop and not a if loop"
+      ],
+      "metadata": {
+        "id": "FsRJPPliej3p"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "gcd6(101,2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_caQuek8elSP",
+        "outputId": "9a163e5d-d743-4ef0-a40c-39ce7226d526"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "1"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 15
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# So, we just wanted to emphasise that Boolean values can be computed, assigned, passed around just like numerical values are.\n",
+        "# Name inhetri types for values currently assigned\n",
+        "def divides(m,n):\n",
+        "  if n%m==0:\n",
+        "    return(True)\n",
+        "  else:\n",
+        "    return(False)\n",
+        "\n",
+        "def even(n):\n",
+        "  return(divides(2,n))\n",
+        "\n",
+        "def odd(n):\n",
+        "  return(not divides(2,n))\n"
+      ],
+      "metadata": {
+        "id": "r4pMVIeeel-G"
+      },
+      "execution_count": 16,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "odd(17)"
+      ],
+      "metadata": {
+        "id": "kY10_UdbemSd",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "068c6642-6efb-4485-b89f-771730a89105"
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 19
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Pyhton can processe stringes prety easily, only one type for single caharacter or for line. Enlose in uquotes - can be single, double or even triprl\n",
+        "# to invldue a single quote put the ocmment in a double quote. BEst is yto use a triple qupte to put entire sentnce in one line.\n",
+        "myquote='''First Line/nSecond Line/nThird Line'''\n",
+        "print(myquote)\n",
+        "# in python range (1,n) ends at n-1 since number ing f list ends at n-1.\n",
+        "# string i immutable, which eams that string cant be modified at place.\n",
+        "# list is mutable anad can be changed in place.\n"
+      ],
+      "metadata": {
+        "id": "sCZjFincembi",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "83a0877f-8d30-4a9c-e589-41e8feded0bc"
+      },
+      "execution_count": 24,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "First Line/nSecond Line/nThird Line\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# list can be of mixed type,not usual, but Pythion allows List to be of diff data types\n",
+        "# useful distinction of slicing between sttrings and list is that of slicing one single elemnt and and sub-slcie will yield same data type\n",
+        "# where as for list, sindexing one element will be of that data type vs slicing will be a lst, see example below.\n",
+        "\n",
+        "h='hello'\n",
+        "h1=h[0]\n",
+        "h2=h[0:1]\n",
+        "print(h1==h2)\n",
+        "\n",
+        "list=[1,2,3,4]\n",
+        "b=list[0]\n",
+        "b1=list[0:1]\n",
+        "print(type(b))\n",
+        "print(type(b1))\n",
+        "print(b==b1)"
+      ],
+      "metadata": {
+        "id": "B3Oy26c1emhC",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "03b87159-d52f-4e0a-a237-ade9d1431865"
+      },
+      "execution_count": 28,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "True\n",
+            "<class 'int'>\n",
+            "<class 'list'>\n",
+            "False\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#list can have nesting, list can have another list\n",
+        "nested=[[2,[37]],4,[\"HELLO\"]]\n",
+        "print(nested[0])\n",
+        "print(nested[1])\n",
+        "print(nested[2][0][3])\n",
+        "print(nested[0][1:2])\n",
+        "print(nested[0][1])\n",
+        "#difference of last and above last is sub-slicing leads to a List whereas Indexing one element does nto generate list type."
+      ],
+      "metadata": {
+        "id": "vJga9cydemlQ",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "2d42da84-ce88-4558-a344-8e4de64be491"
+      },
+      "execution_count": 44,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[2, [37]]\n",
+            "4\n",
+            "L\n",
+            "[[37]]\n",
+            "[37]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "list1=[1,2,3,4]\n",
+        "list1[1]"
+      ],
+      "metadata": {
+        "id": "RyOt9PX6empG",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "b7fe5216-0d9d-4437-a260-ec7fbe84b539"
+      },
+      "execution_count": 41,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 41
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#  objects reference - for immutables values, we can assume that assignment makes a fresh copy of a value, see example below where we assigned y to x, still updating value of x didnt impact y.\n",
+        "x=5\n",
+        "y=x\n",
+        "x=7\n",
+        "print(x)\n",
+        "print(y)\n",
+        "\n",
+        "# for mutables like list - assignment points to the same object, hence updating list2 also updates list1.\n",
+        "# FOr lists to make a copy of the original you can call the slice operation\n",
+        "list1=[1,2,3,4]\n",
+        "list2=list1\n",
+        "list1[2]=5\n",
+        "print(list1)\n",
+        "print(list2)\n",
+        "\n",
+        "list3=[1,2,3,4]\n",
+        "list3_1=list3[:]\n",
+        "list4=list3\n",
+        "list4[2]=5\n",
+        "print(list3)\n",
+        "print(list3_1)\n",
+        "print(list4)"
+      ],
+      "metadata": {
+        "id": "WkWfyURDemtC",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "4e14e299-55d3-492c-d0d0-55020d66fddd"
+      },
+      "execution_count": 51,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "7\n",
+            "5\n",
+            "[1, 2, 5, 4]\n",
+            "[1, 2, 5, 4]\n",
+            "[1, 2, 5, 4]\n",
+            "[1, 2, 3, 4]\n",
+            "[1, 2, 5, 4]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# In python == sign checks for equality of content but the is operatr checks if the objects share the smae memory location, see example below.\n",
+        "# x==y checks if x and y have same value.\n",
+        "# x is y checks if x and y refer to same object.\n",
+        "list11=[1,3,5,7]\n",
+        "list22=[1,3,5,7]\n",
+        "list33=list11\n",
+        "print(list11==list22)\n",
+        "print(list11==list33)\n",
+        "\n",
+        "print(list11 is list22)\n",
+        "print(list11 is list33)"
+      ],
+      "metadata": {
+        "id": "yzKXpaa7emwZ",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "c76df405-abfe-4726-9912-5cbabf3da505"
+      },
+      "execution_count": 55,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "True\n",
+            "True\n",
+            "False\n",
+            "True\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# lists can also be concanted like strings, post concatentatoin a new lst is produced Just liek running a lice operator produces a new list.\n",
+        "list1=[1,3,5,7]\n",
+        "list2=list1\n",
+        "print(list1 is list2)\n",
+        "list1=list1+[9]\n",
+        "print(list1 is list2)"
+      ],
+      "metadata": {
+        "id": "Xjk6AV3pem0O",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "0a692218-8a9c-4972-c04b-bcb087c86ef8"
+      },
+      "execution_count": 56,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "True\n",
+            "False\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# in python else is optional of if-else\n",
+        "# numeric value is treated as false\n",
+        "# Empty sequence is treated as false\n",
+        "# python has elif condition, condition ends at else, this else is also optional.\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "hw6MMLeQem3k"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "X-gRTU8qem7I"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "e0PwA_ORem-i"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "wjGEWO3GenCI"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "5arxBdiSenFx"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "b0U69_MZenJY"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "F7Wf_4DPenMs"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "OvNStc7senQb"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "sy-O-7zsenUE"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "mTSQxuHaenXb"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "FUU1--sgenaz"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "mfhpmvLQeneg"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "oIA1OTtJenh2"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
